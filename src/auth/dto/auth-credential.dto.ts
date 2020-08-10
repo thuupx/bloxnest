@@ -1,5 +1,6 @@
 import { IsString, MinLength, MaxLength, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
+import { User } from '../user.entity';
 
 export class AuthCredentials {
   @IsString()
@@ -22,3 +23,8 @@ export class SignUpDto extends AuthCredentials {
   // TODO: extends multiple information
 }
 export class SignInDto extends AuthCredentials { }
+
+export type SignedInData = {
+  user: User;
+  access_token: string;
+}
