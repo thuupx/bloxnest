@@ -7,18 +7,18 @@ import { FindConditions } from 'typeorm';
 
 @Injectable()
 export class UserService {
-    constructor(
-        @InjectRepository(User)
-        private readonly userRepository: UserRepository,
-    ) {
-    }
-    async findOne(findConditions: FindConditions<User>) {
-        return this.userRepository.findOne(findConditions);
-    }
-    async signUp(credentials: SignUpDto) {
-        return this.userRepository.signUp(credentials);
-    }
-    async validateUserPassword(credentials: SignInDto) {
-        return this.userRepository.validateUserPassword(credentials);
-    }
+  constructor(
+    @InjectRepository(User)
+    private readonly userRepository: UserRepository,
+  ) {
+  }
+  async findOne(findConditions: FindConditions<User>): Promise<User> {
+    return this.userRepository.findOne(findConditions);
+  }
+  async signUp(credentials: SignUpDto): Promise<void> {
+    return this.userRepository.signUp(credentials);
+  }
+  async validateUserPassword(credentials: SignInDto): Promise<User> {
+    return this.userRepository.validateUserPassword(credentials);
+  }
 }

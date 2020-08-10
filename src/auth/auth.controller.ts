@@ -3,12 +3,9 @@ import {
   Post,
   Body,
   ValidationPipe,
-  Get,
-  Query,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignUpDto, SignInDto } from '../shared/dto/auth-credential.dto';
-import { User } from '../user/user.entity';
 
 @Controller('auth')
 export class AuthController {
