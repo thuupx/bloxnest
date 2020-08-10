@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { genSalt, hash } from 'bcrypt';
 import { User } from './user.entity';
-import { SignUpDto } from './dto/auth-credential.dto';
+import { SignUpDto } from '../shared/dto/auth-credential.dto';
 import { ErrorCode } from '../shared/error-code';
 
 @EntityRepository(User)
