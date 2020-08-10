@@ -7,10 +7,9 @@ import {
 } from 'typeorm';
 import { hash } from 'bcrypt';
 export enum UserRole {
-  HQ = 'HQ',
-  SCHOOL_OWNER = 'school_owner',
-  SCHOOL_TEACHER = 'school_teacher',
   USER = 'user',
+  ADMIN = 'admin',
+  ROOT = 'root',
 }
 @Entity()
 @Unique(['username'])
