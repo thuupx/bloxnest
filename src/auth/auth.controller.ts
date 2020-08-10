@@ -12,16 +12,16 @@ import { User } from './user.entity';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
-  @Post('/sign-up')
+  @Post('/register')
   async signUp(
     @Body(ValidationPipe) credentialsSignUp: SignUpDto,
   ): Promise<void> {
     return this.authService.signUp(credentialsSignUp);
   }
 
-  @Post('/sign-in')
+  @Post('/login')
   async signIn(
     @Body(ValidationPipe) credentials: SignInDto,
   ): Promise<{ access_token: string }> {
