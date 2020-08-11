@@ -1,5 +1,4 @@
 import { NestFactory } from '@nestjs/core';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { config } from 'dotenv';
 const path: string = process.env.NODE_ENV === 'production'
   ? '.env.production'
