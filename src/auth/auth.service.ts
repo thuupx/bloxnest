@@ -16,8 +16,8 @@ export class AuthService {
   async signIn(credentials: SignInDto): Promise<SignedInData> {
     const user = await this.userService.validateUserPassword(credentials);
     if (!user) throw new UnauthorizedException('Invalid credentials');
-    const { username, role } = user;
-    const payload: JwtPayload = { username, role };
+    const { username, roles } = user;
+    const payload: JwtPayload = { username, roles };
     const access_token = await this.jwtService.signAsync(payload);
     const signed: SignedInData = { user, access_token };
     return signed;

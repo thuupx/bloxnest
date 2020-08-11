@@ -1,6 +1,6 @@
-import { UserRole } from '../user/user.entity';
+import { UserRoles } from '../app.roles';
 
 export interface JwtPayload {
   username: string;
-  role: UserRole;
+  roles: UserRoles;
 }

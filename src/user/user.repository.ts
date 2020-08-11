@@ -5,17 +5,18 @@ import {
 } from '@nestjs/common';
 import { genSalt, hash } from 'bcrypt';
 import { User } from './user.entity';
-import { SignUpDto } from '../shared/dto/auth-credential.dto';
+import { SignUpDto, SignInDto } from '../shared/dto/auth-credential.dto';
 import { ErrorCode } from '../shared/error-code';
+import { UserRoles } from '../app.roles';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
   async signUp(credentialsSignUp: SignUpDto): Promise<void> {
-    const { username, password } = credentialsSignUp;
+    const { password } = credentialsSignUp;
     const user = new User();
     const salt = await genSalt();
     const hashed = await hash(password, salt);
-    user.username = username;
+    Object.keys(credentialsSignUp).forEach(key => user[key] = credentialsSignUp[key]);
     user.password = hashed;
     user.salt = salt;
     try {
@@ -29,7 +30,7 @@ export class UserRepository extends Repository<User> {
       }
     }
   }
-  async validateUserPassword(credentialsSignUp: SignUpDto): Promise<User> {
+  async validateUserPassword(credentialsSignUp: SignInDto): Promise<User> {
     const { username, password } = credentialsSignUp;
     const user = await this.findOne({ username });
     if (user && (await user.validatePassword(password))) {
