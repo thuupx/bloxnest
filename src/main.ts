@@ -8,16 +8,15 @@ config({ path });
 import { AppModule } from './app.module';
 import { TransformInterceptor } from './common/transform.interceptor';
 import setUpSwagger from './setupSwagger';
-import helmet from 'helmet';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const helmet = require('helmet');
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('/api/v1');
   app.useGlobalInterceptors(new TransformInterceptor());
   app.use(
     helmet({
-      contentSecurityPolicy: {
-        reportOnly: true,
-      },
+      contentSecurityPolicy: false,
     }),
   );
   app.enableCors({
