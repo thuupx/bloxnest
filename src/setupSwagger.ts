@@ -74,6 +74,7 @@ export default function setUpSwagger(
     .setDescription('This open API for Bloxnest')
     .setVersion('1.0')
     .addBearerAuth({ type: 'http', in: 'header', scheme: 'bearer', bearerFormat: 'Bearer ', name: 'Authorization' })
+
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup(DOC_ENDPOINT, app, document);
