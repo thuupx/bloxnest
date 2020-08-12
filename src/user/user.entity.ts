@@ -4,10 +4,12 @@ import {
   PrimaryGeneratedColumn,
   Column,
   Unique,
+  OneToMany,
 } from 'typeorm';
 import { hash } from 'bcrypt';
 import { Exclude } from 'class-transformer';
 import { UserRoles } from '../app.roles';
+import { Article } from 'src/article/article.entity';
 
 @Entity()
 @Unique(['username'])
@@ -47,6 +49,9 @@ export class User extends BaseEntity {
   @Exclude()
   @Column()
   salt: string;
+
+  @OneToMany(type => Article, article => article.author)
+  articles: Article[];
 
   async validatePassword(password: string): Promise<boolean> {
     const hashed = await hash(password, this.salt);
