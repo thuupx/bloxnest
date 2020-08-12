@@ -1,0 +1,1 @@
+docker run -d --name postgres_db -e POSTGRES_PASSWORD=abc123 -p 5432:5432 postgres:latest
