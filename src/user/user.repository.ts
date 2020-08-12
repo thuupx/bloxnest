@@ -7,7 +7,6 @@ import { genSalt, hash } from 'bcrypt';
 import { User } from './user.entity';
 import { SignUpDto, SignInDto } from '../shared/dto/auth-credential.dto';
 import { ErrorCode } from '../shared/error-code';
-import { UserRoles } from '../app.roles';
 
 @EntityRepository(User)
 export class UserRepository extends Repository<User> {
@@ -16,7 +15,9 @@ export class UserRepository extends Repository<User> {
     const user = new User();
     const salt = await genSalt();
     const hashed = await hash(password, salt);
-    Object.keys(credentialsSignUp).forEach(key => user[key] = credentialsSignUp[key]);
+    Object.keys(credentialsSignUp).forEach(
+      (key) => (user[key] = credentialsSignUp[key]),
+    );
     user.password = hashed;
     user.salt = salt;
     try {

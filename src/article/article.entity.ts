@@ -1,4 +1,11 @@
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+} from 'typeorm';
 import { User } from 'src/user/user.entity';
 
 @Entity()
@@ -12,7 +19,7 @@ export class Article extends BaseEntity {
   @Column()
   content: string;
 
-  @ManyToOne(type => User, user => user.articles, { onDelete: "CASCADE" })
+  @ManyToOne((_type) => User, (user) => user.articles, { onDelete: 'CASCADE' })
   author: User;
 
   @Column({

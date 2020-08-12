@@ -9,14 +9,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 export class ArticleService {
   constructor(
     @InjectRepository(Article)
-    private readonly articleRepository: ArticleRepository
-  ) { }
+    private readonly articleRepository: ArticleRepository,
+  ) {}
 
   createArticle(user: User, body: CreateArticleDto): Promise<Article> {
     return this.articleRepository.createArticle(user, body);
   }
 
-  findAllArticles() {
+  findAllArticles(): Promise<Article[]> {
     return this.articleRepository.find({ relations: ['user'] });
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   BaseEntity,
   Entity,
@@ -50,7 +51,7 @@ export class User extends BaseEntity {
   @Column()
   salt: string;
 
-  @OneToMany(type => Article, article => article.author)
+  @OneToMany((type) => Article, (article) => article.author)
   articles: Article[];
 
   async validatePassword(password: string): Promise<boolean> {
